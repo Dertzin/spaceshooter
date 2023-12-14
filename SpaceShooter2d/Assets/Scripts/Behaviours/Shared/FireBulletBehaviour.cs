@@ -13,7 +13,11 @@ public class FireBulletBehaviour : MonoBehaviour
 
     private float timecounter;
     private float timetoshoot = 0.5f;
+
     //private float rotationspeed = 5f;
+
+    [SerializeField] private string bulletType;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,18 +30,29 @@ public class FireBulletBehaviour : MonoBehaviour
     {
         
         timecounter += Time.deltaTime;
+
         if(timecounter >= timetoshoot)
         {
-            GameObject bullet = Instantiate(Bulletprefab,transform.position,Quaternion.identity);
+            if (bulletType == "Ufo") // if is a Ufo then instantiate a Ufo
+            {
+                GameObject bullet = Instantiate(Bulletprefab,transform.position,Quaternion.identity);
             
-            HelperClasses.RotateToPlayer(bullet.transform,_target,5f);// not working
+                HelperClasses.RotateToPlayer(bullet.transform,_target);               
+            }
+            else if (bulletType == "Ship") // if is a ship then instantiate a ship
+            {
+                GameObject laser = Instantiate(Bulletprefab, transform.position, Quaternion.identity);
+                
+                HelperClasses.RotateToPlayer(_target.transform,_target);
+            }
 
             timecounter = 0;
         }
         
     }
 
-    
-
-    
+    public void GetBulletType(string value)
+    {
+        bulletType = value;
+    }
 }

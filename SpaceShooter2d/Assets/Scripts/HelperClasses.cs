@@ -13,6 +13,12 @@ static public class HelperClasses
         public static float MaxY => Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
     }
 
+
+    public static void RotateToPlayer(Transform objectToRotate, Transform target)
+    {
+        RotateToPlayer(objectToRotate, target, float.MaxValue);
+    }
+
     public static void RotateToPlayer(Transform objectToRotate, Transform target, float rotationSpeed)
     {
         if (target != null)
@@ -22,7 +28,6 @@ static public class HelperClasses
 
             float angle = Mathf.Atan2(pointToTarget.y, pointToTarget.x) * Mathf.Rad2Deg + 90f;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-
 
             objectToRotate.rotation = Quaternion.Slerp(objectToRotate.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }

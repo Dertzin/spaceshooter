@@ -17,7 +17,7 @@ public class PlayerShootBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Cross")) 
+        if(Input.GetKeyDown(KeyCode.Space) /*|| Input.GetButtonDown("Cross")*/) 
         {
             GameObject bullet = Instantiate(bulletprefab, transform.position, Quaternion.identity);
             PlayerBulletMovement speed = bullet.GetComponent<PlayerBulletMovement>();
