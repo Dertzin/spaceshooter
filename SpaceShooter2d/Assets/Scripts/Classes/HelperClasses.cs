@@ -3,8 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-static public class HelperClasses 
+static public class HelperClasses
 {
+    public static float CalculateDistance(Transform object1, Transform object2)
+    {
+        if (object1 != null && object2 != null)
+        {
+            return Vector3.Distance(object1.position, object2.position);
+        }
+
+        Debug.LogError("Please provide valid Transform references.");
+        return -1f; // or some value to indicate an error or invalid result
+    }
     public static class ScreenBounds
     {
         public static float MinX => Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
@@ -12,7 +22,10 @@ static public class HelperClasses
         public static float MinY => Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
         public static float MaxY => Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
     }
-
+    public static void RotateToPlayer(Transform objectToRotate, Transform target)
+    {
+        RotateToPlayer(objectToRotate,target,float.MaxValue);
+    }
     public static void RotateToPlayer(Transform objectToRotate, Transform target, float rotationSpeed)
     {
         if (target != null)

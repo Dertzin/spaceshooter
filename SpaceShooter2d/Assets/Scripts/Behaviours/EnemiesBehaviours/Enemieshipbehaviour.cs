@@ -5,14 +5,14 @@ using static PlayerMovementBehaviour;
 
 public class Enemieshipbehaviour : MonoBehaviour
 {
-    [SerializeField] private float _movementspeed;
-    [SerializeField] private List<string> _movementype = new List<string>();
-    [SerializeField] private string _direction;
+    private float _movementspeed = 3;
+    private string _shipType;
+    private string _direction;
     //[SerializeField] private string _speed;
     private float shipHalfWidth;
     private float shipHalfHeight;
 
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform _target;
 
     private float rotationSpeed = 5f;
     private Vector3 originalDirectionX;
@@ -44,23 +44,23 @@ public class Enemieshipbehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HelperClasses.RotateToPlayer(transform,target,rotationSpeed);
+        HelperClasses.RotateToPlayer(transform,_target,rotationSpeed);
         EnemieMovement();
     }
     
-    private void EnemieMovement(/*, float movement, string type*/)
+    private void EnemieMovement()
     {
-        if (_direction == "Horizontal") // Direction top
-        {
-            MoveHorizontal();
-
+        if (_shipType == "Ship")
+        {                    
+            if (_direction == "Horizontal") // Direction top
+            {
+                MoveHorizontal();
+            }
+            else if (_direction == "Vertical")
+            {
+                MoveVertical();
+            }
         }
-        else if (_direction == "Vertical")
-        {
-
-            MoveVertical();
-        }
-
 
     }
 
@@ -93,10 +93,10 @@ public class Enemieshipbehaviour : MonoBehaviour
             _movementspeed = Mathf.Abs(_movementspeed);
         }
     }
-    private void SetShipActions(string direction, float speed, string type)
+    public void SetShipActions(string direction, string type,Transform target)
     {
-        direction = _direction;
-        speed = _movementspeed;
-        _movementype.Add(type);
+        _direction = direction;
+        _shipType = type;
+        _target = target;
     }
 }
