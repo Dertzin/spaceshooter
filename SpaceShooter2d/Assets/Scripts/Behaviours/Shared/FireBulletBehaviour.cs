@@ -78,10 +78,12 @@ public class FireBulletBehaviour : MonoBehaviour
     }
     private void CreateLaser()
     {
-        GameObject bigbullet = GameObject.Instantiate(Bulletprefab, transform.position, Quaternion.identity);
-        bigbullet.transform.localScale = new Vector3(1f, 60f, 1f);
-        
+        //Vector3 rearangenum = new Vector3(0f, 10f,0f);
+        GameObject bigbullet = GameObject.Instantiate(Bulletprefab, transform.position , Quaternion.identity);
         HelperClasses.RotateToPlayer(bigbullet.transform, _target);
+        bigbullet.transform.Translate(0, -3f, 0);
+        bigbullet.transform.localScale = new Vector3(1f, 20f, 1f);
+
     }
 
     public void SetBullet(Transform target,string shiptype)

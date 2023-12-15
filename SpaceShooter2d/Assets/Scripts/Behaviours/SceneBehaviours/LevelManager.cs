@@ -45,20 +45,31 @@ public class LevelManager : MonoBehaviour
 
     private void SetupLevel1()
     {
-        
-        GameObject ship1 = Instantiate(_shipprefab, DownMiddlestartpos, Quaternion.identity);
+
+        CreateShip(DownMiddlestartpos, "Horizontal");
+
+        CreateUfo(DownLeftstartpos, "Vertical");
+    }
+
+    private void CreateShip(Vector2 startpos,string direction)
+    {
+        GameObject ship1 = Instantiate(_shipprefab, startpos, Quaternion.identity);
         Enemieshipbehaviour enemieshipbehaviour = ship1.GetComponent<Enemieshipbehaviour>();
         FireBulletBehaviour fireBulletBehaviour = ship1.GetComponent<FireBulletBehaviour>();
 
-        fireBulletBehaviour.SetBullet(_target,"Ship");
-        enemieshipbehaviour.SetShipActions("Horizontal", "Ship", _target);
-    }
-
-    private void CreateShip()
-    {
-
+        fireBulletBehaviour.SetBullet(_target, "Ship");
+        enemieshipbehaviour.SetShipActions(direction, "Ship", _target);
     } 
 
+    private void CreateUfo(Vector2 startpos, string direction)
+    {
+        GameObject ufo = Instantiate(_ufoprefab, startpos, Quaternion.identity);
+        Enemieshipbehaviour enemieshipbehaviour = ufo.GetComponent<Enemieshipbehaviour>();
+        FireBulletBehaviour fireBulletBehaviour = ufo.GetComponent<FireBulletBehaviour>();
+
+        fireBulletBehaviour.SetBullet(_target, "Ufo");
+        enemieshipbehaviour.SetShipActions(direction, "Ufo", _target);
+    }
     
 
 

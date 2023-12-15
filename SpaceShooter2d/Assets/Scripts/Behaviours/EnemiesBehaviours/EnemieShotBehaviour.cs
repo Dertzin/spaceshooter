@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemieShotBehaviour : MonoBehaviour // THIS SCRIPT IS TEMPORARY/TEST
+public class EnemieShotBehaviour : MonoBehaviour 
 {
-    [SerializeField] private float _movementspeed = 10f;
+    //[SerializeField] private float _movementspeed = 10f;
     // Start is called before the first frame update
     void Start()
     {
