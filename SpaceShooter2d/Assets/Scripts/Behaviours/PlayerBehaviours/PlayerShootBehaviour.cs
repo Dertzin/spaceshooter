@@ -7,8 +7,7 @@ public class PlayerShootBehaviour : MonoBehaviour
     [SerializeField] private float bulletspeed;
     [SerializeField] private GameObject bulletprefab;
 
-    private float verticalInput;
-    private float horizontalInput;
+    
     void Start()
     {
         
